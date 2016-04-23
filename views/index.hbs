@@ -1,5 +1,5 @@
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<p>Welcome to {{title}}!</p>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>Unity Web Player | Fishackaton2016</title>
@@ -7,8 +7,9 @@
   <script type="text/javascript">
     <!--
     var unityObjectUrl = "http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject2.js";
-    if (document.location.protocol == 'https:')
+    if (document.location.protocol == 'https:') {
       unityObjectUrl = unityObjectUrl.replace("http://", "https://ssl-");
+    }
     document.write('<script type="text\/javascript" src="' + unityObjectUrl + '"><\/script>');
     -->
   </script>
@@ -17,7 +18,7 @@
     var config = {
       width: 960,
       height: 600,
-      params: { enableDebugging:"0" }
+      params: {enableDebugging: "0"}
 
     };
     var u = new UnityObject2(config);
@@ -29,10 +30,10 @@
       $missingScreen.hide();
       $brokenScreen.hide();
 
-      u.observeProgress(function (progress) {
-        switch(progress.pluginStatus) {
+      u.observeProgress(function(progress) {
+        switch (progress.pluginStatus) {
           case "broken":
-            $brokenScreen.find("a").click(function (e) {
+            $brokenScreen.find("a").click(function(e) {
               e.stopPropagation();
               e.preventDefault();
               u.installPlugin();
@@ -41,7 +42,7 @@
             $brokenScreen.show();
             break;
           case "missing":
-            $missingScreen.find("a").click(function (e) {
+            $missingScreen.find("a").click(function(e) {
               e.stopPropagation();
               e.preventDefault();
               u.installPlugin();
@@ -68,25 +69,32 @@
       color: black;
       text-align: center;
     }
+
     a:link, a:visited {
       color: #000;
     }
+
     a:active, a:hover {
       color: #666;
     }
+
     p.header {
       font-size: small;
     }
+
     p.header span {
       font-weight: bold;
     }
+
     p.footer {
       font-size: x-small;
     }
+
     div.content {
       margin: auto;
       width: 960px;
     }
+
     div.broken,
     div.missing {
       margin: auto;
@@ -94,42 +102,57 @@
       top: 50%;
       width: 193px;
     }
+
     div.broken a,
     div.missing a {
       height: 63px;
       position: relative;
       top: -31px;
     }
+
     div.broken img,
     div.missing img {
       border-width: 0px;
     }
+
     div.broken {
       display: none;
     }
+
     div#unityPlayer {
       cursor: default;
       height: 600px;
       width: 960px;
     }
+
     -->
   </style>
 </head>
 <body>
+{{#if user}}
+  <h2>Hello, {{user.username}}.</h2>
+{{else}}
+  <div style="width:500px;height:180px;">
+    <h2 style="font-size:40px;">Welcome! Please log in.</h2>
+    <a href="/auth/facebook"><img src="fb-login.jpg" width="151" height="24"></a>
+  </div>
+{{/if}}
 <p class="header"><span>Unity Web Player | </span>Fishackaton2016</p>
 <div class="content">
   <div id="unityPlayer">
     <div class="missing">
       <a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!">
-        <img alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63" />
+        <img alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63"/>
       </a>
     </div>
     <div class="broken">
       <a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now! Restart your browser after install.">
-        <img alt="Unity Web Player. Install now! Restart your browser after install." src="http://webplayer.unity3d.com/installation/getunityrestart.png" width="193" height="63" />
+        <img alt="Unity Web Player. Install now! Restart your browser after install." src="http://webplayer.unity3d.com/installation/getunityrestart.png" width="193" height="63"/>
       </a>
     </div>
   </div>
 </div>
-<p class="footer">&laquo; created with <a href="http://unity3d.com/unity/" title="Go to unity3d.com">Unity</a> &raquo;</p>
+<p class="footer">&laquo; created with
+  <a href="http://unity3d.com/unity/" title="Go to unity3d.com">Unity</a> &raquo;
+</p>
 </body>
