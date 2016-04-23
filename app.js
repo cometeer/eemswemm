@@ -10,10 +10,10 @@ var users = require('./routes/users');
 var config = require('./configuration/config');
 
 var app = express();
-var passport = require('passport');
-app.use(passport.initialize());
-app.use(passport.session());
-var FacebookStrategy = require('passport-facebook').Strategy;
+// var passport = require('passport');
+// app.use(passport.initialize());
+// app.use(passport.session());
+// var FacebookStrategy = require('passport-facebook').Strategy;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -39,31 +39,31 @@ app.use(function(req, res, next) {
 });
 
 
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
-});
-passport.use(new FacebookStrategy({
-    clientID: config.facebook_api_key,
-    clientSecret: config.facebook_api_secret,
-    callbackURL: config.callback_url
-  },
-  function(accessToken, refreshToken, profile, done) {
-    process.nextTick(function() {
-      //Check whether the User exists or not using profile.id
-      if (config.use_database === 'true') {
-        //Further code of Database.
-      }
-      return done(null, profile);
-    });
-  }
-));
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login')
-}
+// passport.serializeUser(function(user, done) {
+//   done(null, user);
+// });
+// passport.deserializeUser(function(obj, done) {
+//   done(null, obj);
+// });
+// passport.use(new FacebookStrategy({
+//     clientID: config.facebook_api_key,
+//     clientSecret: config.facebook_api_secret,
+//     callbackURL: config.callback_url
+//   },
+//   function(accessToken, refreshToken, profile, done) {
+//     process.nextTick(function() {
+//       //Check whether the User exists or not using profile.id
+//       if (config.use_database === 'true') {
+//         //Further code of Database.
+//       }
+//       return done(null, profile);
+//     });
+//   }
+// ));
+// function ensureAuthenticated(req, res, next) {
+//   if (req.isAuthenticated()) { return next(); }
+//   res.redirect('/login')
+// }
 // error handlers
 
 // development error handler
