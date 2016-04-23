@@ -10,9 +10,9 @@ var users = require('./routes/users');
 var config = require('./configuration/config');
 
 var app = express();
+var passport = require('passport');
 app.use(passport.initialize());
 app.use(passport.session());
-var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 
 // view engine setup
