@@ -1,8 +1,15 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}!</p>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>Unity Web Player | Fishackaton2016</title>
+  <!-- IE required polyfills, in this exact order -->
+  <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+  <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
+  <script src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
+
+  <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+  <script src="node_modules/systemjs/dist/system.src.js"></script>
+  <script src="node_modules/rxjs/bundles/Rx.js"></script>
+  <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
   <script type='text/javascript' src='https://ssl-webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/jquery.min.js'></script>
   <script type="text/javascript">
     <!--
@@ -57,7 +64,7 @@
             break;
         }
       });
-      u.initPlugin(jQuery("#unityPlayer")[0], "/Fishackaton2016.jpg");
+      u.initPlugin(jQuery("#unityPlayer")[0], "/public/Fishackaton2016.jpg");
     });
     -->
   </script>
@@ -127,8 +134,22 @@
 
     -->
   </style>
+  <script>
+    System.config({
+      packages: {
+        app: {
+          format: 'register',
+          defaultExtension: 'js'
+        }
+      }
+    });
+    System.import('app/main')
+      .then(null, console.error.bind(console));
+  </script>
 </head>
 <body>
+
+<my-app>Loading...</my-app>
 
 <script>
   // This is called with the results from from FB.getLoginStatus().
