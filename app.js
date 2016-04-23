@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+app.use(passport.initialize());
+app.use(passport.session());
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 
