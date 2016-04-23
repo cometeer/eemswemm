@@ -221,7 +221,11 @@
 
 <div id="status">
 </div>
-
+<script>
+FB.api('/me', function(response) {
+console.log(JSON.stringify(response));
+});
+</script>
 
 <p class="header"><span>Unity Web Player | </span>Fishackaton2016</p>
 <div class="content">
